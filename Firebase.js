@@ -23,9 +23,9 @@ class Firebase{
     }
   }
 
-
-  login = async(account, success_callback, failed_callback) => {
-    await firebase.auth().signInWithEmailAndPassword(account.email,account.password).then(
+  async login(account, success_callback, failed_callback)
+  {
+    firebase.auth().signInWithEmailAndPassword(account.email,account.password).then(
       function(){
         success_callback();
       }
@@ -34,16 +34,16 @@ class Firebase{
     })
   }
 
-  async signout(Account,add_Account_success,add_Account_fail)
+  async signout(Account,signout_success,signout_fail)
   {
-    firebase.auth.signOut();
+    firebase.auth().signOut().then(ref=>{signout_success(ref.id)},signout_fail);
   }
 
   async fgp(Account)
   {
     firebase.auth().sendPasswordResetEmail(Account.email);
   }
-  
+
   async createAccount(Account,add_Account_success,add_Account_fail)
   {
     firebase.firestore().collection("Account").doc(Account.email).set(Account).then(ref=>{add_Account_success(ref.id)},add_Account_fail);
@@ -56,9 +56,7 @@ class Firebase{
     }).catch(function(error){
       createAut_fail(error)
     });
-
   }
-
 }
 
 const database = new Firebase();

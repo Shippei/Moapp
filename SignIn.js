@@ -72,7 +72,6 @@ export default class SignIn extends React.Component {
                         <Row>
                             <Text>You don't have an account yet?</Text>
                             <Text style={{fontWeight: 'bold'}} onPress={() => this.props.navigation.navigate('AuthStack')}> Sign Up</Text>
-                            <Text style={{fontWeight: 'bold'}} onPress={() => this.props.navigation.navigate('fgp')}>Forgot Password?</Text>
                         </Row>
                     </Col>
                     <Col></Col>
